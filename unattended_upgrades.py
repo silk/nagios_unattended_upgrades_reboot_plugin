@@ -116,7 +116,9 @@ try:
     # --- Check if a reboot is required (by checking for file '/var/run/reboot-required')
     reboot_required = os.path.exists('/var/run/reboot-required')
     if reboot_required:
-        print("WARNING - Server requires a reboot")
+        pkgs_path = '/var/run/reboot-required.pkgs'
+        pkgs = ': ' + ' '.join(open(pkgs_path).readlines()).strip() if os.path.exists(pkgs_path) else ''
+        print("WARNING - Server requires a reboot" + pkgs)
         sys.exit(WARNING)
     else:
         print("OK - unattended_upgrades runs every {} days".format(unattended_upgrade_period))
