@@ -100,8 +100,6 @@ try:
         re.escape(r'APT::Periodic::Unattended-Upgrade "') + r'(\d+)' + re.escape(r'";'),
         #
         r'APT::Periodic::Update-Package-Lists "(\d+)";',
-        r'APT::Periodic::Download-Upgradeable-Packages "(\d+)";',
-        r'APT::Periodic::AutocleanInterval "(\d+)";',
     ]
     for cvr in config_variable_regexes:
         val = get_config_value(config_filename, cvr)
